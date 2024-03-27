@@ -54,17 +54,25 @@ class Visualisation:
             # Assign wins based on scores
             if tmp_players_scores[0] > tmp_players_scores[1]:
                 self.players[game_data.players[0]].add_win()
-            else:
+
+            elif tmp_players_scores[0] < tmp_players_scores[1]:
                 self.players[game_data.players[1]].add_win()
 
     def players_average_score_and_wins(self):
-        for player in self.players:
-            avg_round_score = self.players[player].score / len(self.players[player].score_add_history)
-            print("Player: ", player, " average score in one round: ", avg_round_score)
 
-        for player_name, player in self.players.items():
-            average_wins = player.wins / len(player.score_add_history) * ROUNDS
-            print(f"Player: {player_name} average wins: {average_wins:.2f}")
+        # Sort players by score
+        sorted_players = sorted(self.players.items(), key=lambda x: x[1].score, reverse=True)
+        for player_name, player in sorted_players:
+            avg_round_score = round(player.score / len(player.score_add_history), 3)
+            print(player_name, "average score:", avg_round_score)
+
+        print("------------------------------------------------------------------------")
+
+        # Sort players by wins
+        sorted_players = sorted(self.players.items(), key=lambda x: x[1].wins, reverse=True)
+        for player_name, player in sorted_players:
+            average_wins = round(player.wins / len(player.score_add_history) * ROUNDS, 3)
+            print(player_name, "average wins: ", average_wins)
 
 class Player:
     def __init__(self, name):
@@ -79,8 +87,6 @@ class Player:
     
     def add_win(self):
         self.wins += 1
-
-
 
 class Game_data:
     """
