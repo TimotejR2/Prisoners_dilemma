@@ -42,26 +42,26 @@ class Visualisation:
 
             # Calculate scores and wins for each player
             tmp_players_scores = {0: 0, 1: 0}
-            
+
             for player in game_data.players:
                 # Check if player object exists
                 if player not in self.players.keys():
                     raise Exception("Player not found: ", player)
-                
+
                 # Calculate scores for each round
                 for round in game_data.rounds:
                     score = round[0 if player == game_data.players[0] else 1]
                     score = int(score)
                     tmp_players_scores[0 if player == game_data.players[0] else 1] += score
-                    
+
                     self.players[player].add_score(score)
             # Assign wins based on scores
             if tmp_players_scores[0] > tmp_players_scores[1]:
                 self.players[game_data.players[0]].add_win()
             else:
                 self.players[game_data.players[1]].add_win()
-        
-        
+
+            
     def players_average_score_and_wins(self):
         for player in self.players:
             print("Player: ", player, " average score in one round: ", self.players[player].score / len(self.players[player].score_add_history))

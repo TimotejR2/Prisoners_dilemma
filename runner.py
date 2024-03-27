@@ -12,7 +12,9 @@ ALL_STRATEGIES = [
     defect,
     copy_last,
     coop_until_def,
-    forgive
+    forgive,
+    oponent_average
+
 ]
 
 
