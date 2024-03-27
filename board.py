@@ -4,6 +4,9 @@ from config import COOPERATE, DEFECT, DATA_FOLDER_PATH
 from config import COOP_COOP, COOP_DEF, DEF_COOP, DEF_DEF
 
 class Board:
+    """
+    Class that simulates the game board.
+    """
     def __init__(self):
         """
         Initialize the game state variables including moves, max_score, min_score, and score_list.
@@ -77,7 +80,7 @@ class Board:
         Calculate and return the score difference between the maximum score and the minimum score.
         """
         return self.max_score - self.min_score
-              
+
     def get_all_score(self):
         """
         Return all scores

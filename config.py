@@ -1,3 +1,6 @@
+"""
+Global constants and settings.
+"""
 COOPERATE = 0
 DEFECT = 1
 

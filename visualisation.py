@@ -2,8 +2,6 @@ import csv
 import os
 from config import DATA_FOLDER_PATH, ROUNDS
 
-
-
 def get_datafiles_names(folder_path=DATA_FOLDER_PATH):
     """
     Get names of files in a given folder.
@@ -19,8 +17,6 @@ def get_datafiles_names(folder_path=DATA_FOLDER_PATH):
 
     # Return the list of file names
     return files
-
-
 
 class Visualisation:
     def __init__(self):
@@ -61,10 +57,10 @@ class Visualisation:
             else:
                 self.players[game_data.players[1]].add_win()
 
-            
     def players_average_score_and_wins(self):
         for player in self.players:
-            print("Player: ", player, " average score in one round: ", self.players[player].score / len(self.players[player].score_add_history))
+            avg_round_score = self.players[player].score / len(self.players[player].score_add_history)
+            print("Player: ", player, " average score in one round: ", avg_round_score)
 
         for player_name, player in self.players.items():
             average_wins = player.wins / len(player.score_add_history) * ROUNDS

@@ -1,3 +1,6 @@
+"""
+Main code that simulates all possible pairs of strategies.
+"""
 from strategys import *
 from board import Board
 from config import ROUNDS
