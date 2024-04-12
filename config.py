@@ -4,7 +4,7 @@ Global constants and settings.
 COOPERATE = 0
 DEFECT = 1
 
-ROUNDS = 1000
+ROUNDS =  100
 
 COOP_COOP = [2,2]
 COOP_DEF = [0,3]

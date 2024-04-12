@@ -21,7 +21,8 @@ ALL_STRATEGIES = [
     forgive,
     oponent_average,
     copy_last_very_agressive,
-    coop_if_3_in_a_row
+    coop_if_3_in_a_row,
+    def_if_3_in_a_row
 
 ]
 
@@ -37,6 +38,7 @@ def simulate_game(pair):
         min_move = min_strategy(board, player=1)
         board.make_move(max_move, min_move)
     board.write(max_strategy.__name__, min_strategy.__name__)
+    board.clear()
 
 def main():
     # Get all possible pairs of strategies

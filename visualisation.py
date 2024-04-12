@@ -61,7 +61,36 @@ class Visualisation:
     def players_average_score_and_wins(self):
 
         # Sort players by score
-        sorted_players = sorted(self.players.items(), key=lambda x: x[1].score, reverse=True)
+        sorted_players = sorted(self.players.items())
+
+        # Open scores.csv in append mode
+        with open('scores.csv', mode='a', newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=[player_name for player_name, player in sorted_players])
+
+            # Write header if not already written
+            if os.path.getsize("scores.csv") == 0:
+                
+                writer.writeheader()
+
+            # Write scores of players in sorted_players to row with matching name
+            row = {player_name: player.score for player_name, player in sorted_players}
+            writer.writerow(row)
+
+        with open('wins.csv', mode='a', newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=[player_name for player_name, player in sorted_players])
+
+            # Write header if not already written
+            if os.path.getsize("wins.csv") == 0:
+                
+                writer.writeheader()
+
+            # Write scores of players in sorted_players to row with matching name
+            row = {player_name: player.wins for player_name, player in sorted_players}
+            writer.writerow(row)
+                
+
+        return 
+        """
         for player_name, player in sorted_players:
             avg_round_score = round(player.score / len(player.score_add_history), 3)
             print(player_name, "average score:", avg_round_score)
@@ -73,6 +102,7 @@ class Visualisation:
         for player_name, player in sorted_players:
             average_wins = round(player.wins / len(player.score_add_history) * ROUNDS, 3)
             print(player_name, "average wins: ", average_wins)
+        """
 
 class Player:
     def __init__(self, name):
@@ -147,4 +177,5 @@ def read():
     # Return the list of Game_data objects
     return strategy_data
 
-Visualisation().players_average_score_and_wins()
+def main():
+    Visualisation().players_average_score_and_wins()
